@@ -1,0 +1,17 @@
+#%RAML 1.0 Library
+types:
+  Conditional:
+    type: object
+    properties:
+      if?:
+
+  WithUri:
+    type: object
+    properties:
+      uri:
+
+annotationTypes:
+#  x-client-ip: nil | Conditional
+#  x-client-language: nil | Conditional
+  deny: [Conditional]
+  rewrite: [WithUri, Conditional]

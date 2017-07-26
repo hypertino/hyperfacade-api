@@ -10,8 +10,12 @@ types:
     properties:
       uri:
 
+  WithSource:
+    type: object
+    properties:
+      source:
+
 annotationTypes:
-#  x-client-ip: nil | Conditional
-#  x-client-language: nil | Conditional
   deny: [Conditional]
   rewrite: [WithUri, Conditional]
+  set: [WithSource, Conditional]

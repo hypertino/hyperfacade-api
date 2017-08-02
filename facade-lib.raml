@@ -1,22 +1,31 @@
 #%RAML 1.0 Library
 types:
-  Conditional:
+  ATConditional:
     type: object
     properties:
       if?:
 
-  WithUri:
+  ATRewriteArguments:
     type: object
     properties:
       uri:
 
-  WithSource:
+  ATSetArguments:
     type: object
     properties:
       source:
 
+  ATFetchArguments:
+    type: object
+    properties:
+      source:
+      on_error?:
+        enum: [fail,remove,default]
+      default:
+
 annotationTypes:
-  deny: [Conditional | nil]
-  remove: [Conditional | nil]
-  rewrite: [WithUri, Conditional]
-  set: [WithSource, Conditional]
+  deny: [ATConditional | nil]
+  remove: [ATConditional | nil]
+  rewrite: [ATRewriteArguments, ATConditional]
+  set: [ATSetArguments, ATConditional]
+  fetch: [ATFetchArguments, ATConditional ]

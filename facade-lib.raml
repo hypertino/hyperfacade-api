@@ -26,7 +26,7 @@ types:
         type: object
         required: false
       expects?:
-        enum: [document,collection_link,collection_top]
+        enum: [document,collection_link,collection_top,single_item]
       on_error?:
         enum: [fail,remove,default]
       default?:
@@ -42,7 +42,7 @@ types:
           type: object
           required: false
         expects?:
-          enum: [document,collection_link,collection_top]
+          enum: [document,collection_link,collection_top,single_item]
         on_error?:
           enum: [fail,remove,default]
         default?:
@@ -54,6 +54,6 @@ annotationTypes:
   forward: [HFRewriteArguments, HFConditional]
   set: [HFSetArguments, HFConditional]
   fetch: [HFFetchArguments, HFConditional ]
-  context_fetch: [HFContextFetchArguments, HFConditional ]
-  extract_item: [HFConditional]
+  context_fetch: [HFContextFetchArguments, HFConditional]
+  extract_item: [HFConditional | nil]
 

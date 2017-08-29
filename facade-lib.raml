@@ -25,11 +25,27 @@ types:
       query:
         type: object
         required: false
-      mode?:
+      expects?:
         enum: [document,collection_link,collection_top]
       on_error?:
         enum: [fail,remove,default]
       default?:
+      stages?:
+      always?: boolean
+
+  HFContextFetchArguments:
+      type: object
+      properties:
+        target:
+        location:
+        query:
+          type: object
+          required: false
+        expects?:
+          enum: [document,collection_link,collection_top]
+        on_error?:
+          enum: [fail,remove,default]
+        default?:
 
 annotationTypes:
   deny: [HFConditional | nil]
@@ -38,4 +54,6 @@ annotationTypes:
   forward: [HFRewriteArguments, HFConditional]
   set: [HFSetArguments, HFConditional]
   fetch: [HFFetchArguments, HFConditional ]
+  context_fetch: [HFContextFetchArguments, HFConditional ]
+  item0: [HFConditional]
 

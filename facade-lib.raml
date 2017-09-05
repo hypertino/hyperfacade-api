@@ -50,12 +50,39 @@ types:
         default?:
 
 annotationTypes:
-  deny: [HFConditional | nil]
-  remove: [HFConditional | nil]
-  rewrite: [HFRewriteArguments, HFConditional]
-  forward: [HFRewriteArguments, HFConditional]
-  set: [HFSetArguments, HFConditional]
-  fetch: [HFFetchArguments, HFConditional ]
-  context_fetch: [HFContextFetchArguments, HFConditional]
-  extract_item: [HFConditional | nil]
-
+  deny:
+    type: [HFConditional | nil]
+    description: |
+      Запретить его присылать с клиента. Если установить поле, будет 403. 
+      Если прислать запрос на котором стоит deny, будет 403.
+  remove:
+    type: [HFConditional | nil]
+    description: |
+      Не возвращать клиенту, в отличие от deny, поле просто удалится из ответа.
+      deny обычно для входящих запросов, remove для ответов, хотя можно и менять
+      стадии.
+  rewrite:
+    type: [HFRewriteArguments, HFConditional]
+    description: |
+      Трансформировать входящий запрос (http) в запрос hyperbus. Работает в обе
+      стороны (ссылки в hyperbus трансформируются обратно в http).
+  forward:
+    type: [HFRewriteArguments, HFConditional]
+    description: |
+      Перенаправить входящий http запрос в hyperbus, работает только в одну
+      сторону, но позволяет использовать выражения для перенаправления.
+  set:
+    type: [HFSetArguments, HFConditional]
+    description: |
+      Установить значение, вычислив выражение.
+  fetch:
+    type: [HFFetchArguments, HFConditional ]
+    description: |
+      Установить значение выполнив GET запрос в Hyperbus.
+  context_fetch:
+    type: [HFContextFetchArguments, HFConditional]
+    description: |
+      Получить что-то из hyperbus и установить в контексте запроса (можно в
+      дальнейшем его зачем нибудь использовать), как локальную переменную.
+  extract_item:
+    type: [HFConditional | nil]

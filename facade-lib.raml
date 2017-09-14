@@ -18,7 +18,7 @@ types:
     properties:
       source:
       target?:
-      stages?:
+      stages?: string[]
 
   HFFetchArguments:
     type: object
@@ -31,8 +31,10 @@ types:
         enum: [document,collection_link,collection_top,single_item]
       on_error?:
         enum: [fail,remove,default]
+      default_statuses?: integer[]
       default?:
-      stages?:
+      stages?: string[]
+      selector?:
       always?: boolean
 
   HFContextFetchArguments:
@@ -47,6 +49,8 @@ types:
           enum: [document,collection_link,collection_top,single_item]
         on_error?:
           enum: [fail,remove,default]
+        default_statuses?: integer[]
+        selector?:
         default?:
 
 annotationTypes:

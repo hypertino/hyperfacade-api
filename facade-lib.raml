@@ -38,22 +38,37 @@ types:
       always?: boolean
 
   HFContextFetchArguments:
-      type: object
-      properties:
-        target:
-        location:
-        query:
-          type: object
-          required: false
-        expects?:
-          enum: [document,collection_link,collection_top,single_item]
-        on_error?:
-          enum: [fail,remove,default]
-        default_statuses?: integer[]
-        selector?:
-        default?:
+    type: object
+    properties:
+      target:
+      location:
+      query:
+        type: object
+        required: false
+      expects?:
+        enum: [document,collection_link,collection_top,single_item]
+      on_error?:
+        enum: [fail,remove,default]
+      default_statuses?: integer[]
+      selector?:
+      default?:
+
+  HFAnnotationListItem:
+    type: object
+    properties:
+      deny?: [HFConditional | nil]
+      remove?: [HFConditional | nil]
+      rewrite?: [HFRewriteArguments, HFConditional]
+      forward?: [HFRewriteArguments, HFConditional]
+      set?: [HFSetArguments, HFConditional]
+      fetch?: [HFFetchArguments, HFConditional ]
+      context_fetch?: [HFContextFetchArguments, HFConditional]
+      extract_item?: [HFConditional | nil]
+
+  HFAnnotationList: HFAnnotationListItem[]
 
 annotationTypes:
+  apply: HFAnnotationList
   deny: [HFConditional | nil]
   remove: [HFConditional | nil]
   rewrite: [HFRewriteArguments, HFConditional]

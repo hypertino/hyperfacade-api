@@ -53,6 +53,13 @@ types:
       selector?:
       default?:
 
+  HFAuthorize:
+    type: object
+    properties:
+      source: string
+      mode?:
+        enum: [normal,privilege]
+
   HFAnnotationListItem:
     type: object
     properties:
@@ -64,6 +71,7 @@ types:
       fetch?: [HFFetchArguments, HFConditional ]
       context_fetch?: [HFContextFetchArguments, HFConditional]
       extract_item?: [HFConditional | nil]
+      authorize?: [HFAuthorize | nil]
 
   HFAnnotationList: HFAnnotationListItem[]
 
@@ -77,4 +85,5 @@ annotationTypes:
   fetch: [HFFetchArguments, HFConditional ]
   context_fetch: [HFContextFetchArguments, HFConditional]
   extract_item: [HFConditional | nil]
+  authorize: [HFAuthorize, HFConditional]
 

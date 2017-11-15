@@ -53,6 +53,13 @@ types:
       selector?:
       default?:
 
+  HFError:
+    type: object
+    properties:
+      code?: string
+      description?: string
+      extra?: object
+
   HFAuthorize:
     type: object
     properties:
@@ -63,7 +70,6 @@ types:
   HFAnnotationListItem:
     type: object
     properties:
-      deny?: [HFConditional | nil]
       remove?: [HFConditional | nil]
       rewrite?: [HFRewriteArguments, HFConditional]
       forward?: [HFRewriteArguments, HFConditional]
@@ -73,11 +79,41 @@ types:
       extract_item?: [HFConditional | nil]
       authorize?: [HFAuthorize | nil]
 
+      bad_request?: [HFError, HFConditional | nil]
+      unauthorized?: [HFError, HFConditional | nil]
+      payment_required?: [HFError, HFConditional | nil]
+      forbidden?: [HFError, HFConditional | nil]
+      not_found?: [HFError, HFConditional | nil]
+      method_not_allowed?: [HFError, HFConditional | nil]
+      not_acceptable?: [HFError, HFConditional | nil]
+      proxy_authentication_required?: [HFError, HFConditional | nil]
+      request_timeout?: [HFError, HFConditional | nil]
+      conflict?: [HFError, HFConditional | nil]
+      gone?: [HFError, HFConditional | nil]
+      length_required?: [HFError, HFConditional | nil]
+      precondition_failed?: [HFError, HFConditional | nil]
+      request_entity_too_large?: [HFError, HFConditional | nil]
+      request_uri_too_long?: [HFError, HFConditional | nil]
+      unsupported_media_type?: [HFError, HFConditional | nil]
+      requested_range_not_satisfiable?: [HFError, HFConditional | nil]
+      expectation_failed?: [HFError, HFConditional | nil]
+      unprocessable_entity?: [HFError, HFConditional | nil]
+      locked?: [HFError, HFConditional | nil]
+      failed_dependency?: [HFError, HFConditional | nil]
+      too_many_request?: [HFError, HFConditional | nil]
+
+      internal_server_error?: [HFError, HFConditional | nil]
+      not_implemented?: [HFError, HFConditional | nil]
+      bad_gateway?: [HFError, HFConditional | nil]
+      service_unavailable?: [HFError, HFConditional | nil]
+      gateway_timeout?: [HFError, HFConditional | nil]
+      http_version_not_supported?: [HFError, HFConditional | nil]
+      insufficient_storage?: [HFError, HFConditional | nil]
+
   HFAnnotationList: HFAnnotationListItem[]
 
 annotationTypes:
   apply: HFAnnotationList
-  deny: [HFConditional | nil]
   remove: [HFConditional | nil]
   rewrite: [HFRewriteArguments, HFConditional]
   forward: [HFRewriteArguments, HFConditional]
@@ -87,3 +123,33 @@ annotationTypes:
   extract_item: [HFConditional | nil]
   authorize: [HFAuthorize, HFConditional]
 
+  bad_request: [HFError, HFConditional | nil]
+  unauthorized: [HFError, HFConditional | nil]
+  payment_required: [HFError, HFConditional | nil]
+  forbidden: [HFError, HFConditional | nil]
+  not_found: [HFError, HFConditional | nil]
+  method_not_allowed: [HFError, HFConditional | nil]
+  not_acceptable: [HFError, HFConditional | nil]
+  proxy_authentication_required: [HFError, HFConditional | nil]
+  request_timeout: [HFError, HFConditional | nil]
+  conflict: [HFError, HFConditional | nil]
+  gone: [HFError, HFConditional | nil]
+  length_required: [HFError, HFConditional | nil]
+  precondition_failed: [HFError, HFConditional | nil]
+  request_entity_too_large: [HFError, HFConditional | nil]
+  request_uri_too_long: [HFError, HFConditional | nil]
+  unsupported_media_type: [HFError, HFConditional | nil]
+  requested_range_not_satisfiable: [HFError, HFConditional | nil]
+  expectation_failed: [HFError, HFConditional | nil]
+  unprocessable_entity: [HFError, HFConditional | nil]
+  locked: [HFError, HFConditional | nil]
+  failed_dependency: [HFError, HFConditional | nil]
+  too_many_request: [HFError, HFConditional | nil]
+
+  internal_server_error: [HFError, HFConditional | nil]
+  not_implemented: [HFError, HFConditional | nil]
+  bad_gateway: [HFError, HFConditional | nil]
+  service_unavailable: [HFError, HFConditional | nil]
+  gateway_timeout: [HFError, HFConditional | nil]
+  http_version_not_supported: [HFError, HFConditional | nil]
+  insufficient_storage: [HFError, HFConditional | nil]

@@ -31,8 +31,9 @@ types:
         enum: [document,collection_link,collection_top,single_item]
       on_error?:
         enum: [fail,remove,default]
-      default_statuses?: integer[]
-      default?:
+      default:
+        type: object
+        required: false
       stages?: string[]
       selector?:
       always?: boolean
@@ -50,9 +51,10 @@ types:
         enum: [document,collection_link,collection_top,single_item]
       on_error?:
         enum: [fail,remove,default]
-      default_statuses?: integer[]
+      default:
+        type: object
+        required: false
       selector?:
-      default?:
       iterate_on?: string
 
   HFError:

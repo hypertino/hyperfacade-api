@@ -5,6 +5,11 @@ types:
     properties:
       if?:
 
+  HFWithStages:
+    type: object
+    properties:
+      stages?: string[]
+
   HFRewriteArguments:
     type: object
     properties:
@@ -14,14 +19,13 @@ types:
         required: false
 
   HFSetArguments:
-    type: object
+    type: HFWithStages
     properties:
       source:
       target?:
-      stages?: string[]
 
   HFFetchArguments:
-    type: object
+    type: HFWithStages
     properties:
       location:
       query:
@@ -34,7 +38,6 @@ types:
       default:
         type: object
         required: false
-      stages?: string[]
       selector?:
       always?: boolean
       iterate_on?: string
@@ -58,7 +61,7 @@ types:
       iterate_on?: string
 
   HFError:
-    type: object
+    type: HFWithStages
     properties:
       code?: string
       description?: string
@@ -74,45 +77,45 @@ types:
   HFAnnotationListItem:
     type: object
     properties:
-      remove?: [HFConditional | nil]
+      remove?: [HFConditional, HFWithStages | nil]
       rewrite?: [HFRewriteArguments, HFConditional]
       forward?: [HFRewriteArguments, HFConditional]
-      set?: [HFSetArguments, HFConditional]
-      fetch?: [HFFetchArguments, HFConditional ]
+      set?: [HFSetArguments, HFWithStages, HFConditional]
+      fetch?: [HFFetchArguments, HFWithStages, HFConditional ]
       context_fetch?: [HFContextFetchArguments, HFConditional]
       extract_item?: [HFConditional | nil]
       authorize?: [HFAuthorize | nil]
 
-      bad_request?: [HFError, HFConditional | nil]
-      unauthorized?: [HFError, HFConditional | nil]
-      payment_required?: [HFError, HFConditional | nil]
-      forbidden?: [HFError, HFConditional | nil]
-      not_found?: [HFError, HFConditional | nil]
-      method_not_allowed?: [HFError, HFConditional | nil]
-      not_acceptable?: [HFError, HFConditional | nil]
-      proxy_authentication_required?: [HFError, HFConditional | nil]
-      request_timeout?: [HFError, HFConditional | nil]
-      conflict?: [HFError, HFConditional | nil]
-      gone?: [HFError, HFConditional | nil]
-      length_required?: [HFError, HFConditional | nil]
-      precondition_failed?: [HFError, HFConditional | nil]
-      request_entity_too_large?: [HFError, HFConditional | nil]
-      request_uri_too_long?: [HFError, HFConditional | nil]
-      unsupported_media_type?: [HFError, HFConditional | nil]
-      requested_range_not_satisfiable?: [HFError, HFConditional | nil]
-      expectation_failed?: [HFError, HFConditional | nil]
-      unprocessable_entity?: [HFError, HFConditional | nil]
-      locked?: [HFError, HFConditional | nil]
-      failed_dependency?: [HFError, HFConditional | nil]
-      too_many_request?: [HFError, HFConditional | nil]
+      bad_request?: [HFError, HFConditional, HFWithStages | nil]
+      unauthorized?: [HFError, HFConditional, HFWithStages | nil]
+      payment_required?: [HFError, HFConditional, HFWithStages | nil]
+      forbidden?: [HFError, HFConditional, HFWithStages | nil]
+      not_found?: [HFError, HFConditional, HFWithStages | nil]
+      method_not_allowed?: [HFError, HFConditional, HFWithStages | nil]
+      not_acceptable?: [HFError, HFConditional, HFWithStages | nil]
+      proxy_authentication_required?: [HFError, HFConditional, HFWithStages | nil]
+      request_timeout?: [HFError, HFConditional, HFWithStages | nil]
+      conflict?: [HFError, HFConditional, HFWithStages | nil]
+      gone?: [HFError, HFConditional, HFWithStages | nil]
+      length_required?: [HFError, HFConditional, HFWithStages | nil]
+      precondition_failed?: [HFError, HFConditional, HFWithStages | nil]
+      request_entity_too_large?: [HFError, HFConditional, HFWithStages | nil]
+      request_uri_too_long?: [HFError, HFConditional, HFWithStages | nil]
+      unsupported_media_type?: [HFError, HFConditional, HFWithStages | nil]
+      requested_range_not_satisfiable?: [HFError, HFConditional, HFWithStages | nil]
+      expectation_failed?: [HFError, HFConditional, HFWithStages | nil]
+      unprocessable_entity?: [HFError, HFConditional, HFWithStages | nil]
+      locked?: [HFError, HFConditional, HFWithStages | nil]
+      failed_dependency?: [HFError, HFConditional, HFWithStages | nil]
+      too_many_request?: [HFError, HFConditional, HFWithStages | nil]
 
-      internal_server_error?: [HFError, HFConditional | nil]
-      not_implemented?: [HFError, HFConditional | nil]
-      bad_gateway?: [HFError, HFConditional | nil]
-      service_unavailable?: [HFError, HFConditional | nil]
-      gateway_timeout?: [HFError, HFConditional | nil]
-      http_version_not_supported?: [HFError, HFConditional | nil]
-      insufficient_storage?: [HFError, HFConditional | nil]
+      internal_server_error?: [HFError, HFConditional, HFWithStages | nil]
+      not_implemented?: [HFError, HFConditional, HFWithStages | nil]
+      bad_gateway?: [HFError, HFConditional, HFWithStages | nil]
+      service_unavailable?: [HFError, HFConditional, HFWithStages | nil]
+      gateway_timeout?: [HFError, HFConditional, HFWithStages | nil]
+      http_version_not_supported?: [HFError, HFConditional, HFWithStages | nil]
+      insufficient_storage?: [HFError, HFConditional, HFWithStages | nil]
 
   HFAnnotationList: HFAnnotationListItem[]
 
@@ -127,33 +130,33 @@ annotationTypes:
   extract_item: [HFConditional | nil]
   authorize: [HFAuthorize, HFConditional]
 
-  bad_request: [HFError, HFConditional | nil]
-  unauthorized: [HFError, HFConditional | nil]
-  payment_required: [HFError, HFConditional | nil]
-  forbidden: [HFError, HFConditional | nil]
-  not_found: [HFError, HFConditional | nil]
-  method_not_allowed: [HFError, HFConditional | nil]
-  not_acceptable: [HFError, HFConditional | nil]
-  proxy_authentication_required: [HFError, HFConditional | nil]
-  request_timeout: [HFError, HFConditional | nil]
-  conflict: [HFError, HFConditional | nil]
-  gone: [HFError, HFConditional | nil]
-  length_required: [HFError, HFConditional | nil]
-  precondition_failed: [HFError, HFConditional | nil]
-  request_entity_too_large: [HFError, HFConditional | nil]
-  request_uri_too_long: [HFError, HFConditional | nil]
-  unsupported_media_type: [HFError, HFConditional | nil]
-  requested_range_not_satisfiable: [HFError, HFConditional | nil]
-  expectation_failed: [HFError, HFConditional | nil]
-  unprocessable_entity: [HFError, HFConditional | nil]
-  locked: [HFError, HFConditional | nil]
-  failed_dependency: [HFError, HFConditional | nil]
-  too_many_request: [HFError, HFConditional | nil]
+  bad_request: [HFError, HFConditional, HFWithStages | nil]
+  unauthorized: [HFError, HFConditional, HFWithStages | nil]
+  payment_required: [HFError, HFConditional, HFWithStages | nil]
+  forbidden: [HFError, HFConditional, HFWithStages | nil]
+  not_found: [HFError, HFConditional, HFWithStages | nil]
+  method_not_allowed: [HFError, HFConditional, HFWithStages | nil]
+  not_acceptable: [HFError, HFConditional, HFWithStages | nil]
+  proxy_authentication_required: [HFError, HFConditional, HFWithStages | nil]
+  request_timeout: [HFError, HFConditional, HFWithStages | nil]
+  conflict: [HFError, HFConditional, HFWithStages | nil]
+  gone: [HFError, HFConditional, HFWithStages | nil]
+  length_required: [HFError, HFConditional, HFWithStages | nil]
+  precondition_failed: [HFError, HFConditional, HFWithStages | nil]
+  request_entity_too_large: [HFError, HFConditional, HFWithStages | nil]
+  request_uri_too_long: [HFError, HFConditional, HFWithStages | nil]
+  unsupported_media_type: [HFError, HFConditional, HFWithStages | nil]
+  requested_range_not_satisfiable: [HFError, HFConditional, HFWithStages | nil]
+  expectation_failed: [HFError, HFConditional, HFWithStages | nil]
+  unprocessable_entity: [HFError, HFConditional, HFWithStages | nil]
+  locked: [HFError, HFConditional, HFWithStages | nil]
+  failed_dependency: [HFError, HFConditional, HFWithStages | nil]
+  too_many_request: [HFError, HFConditional, HFWithStages | nil]
 
-  internal_server_error: [HFError, HFConditional | nil]
-  not_implemented: [HFError, HFConditional | nil]
-  bad_gateway: [HFError, HFConditional | nil]
-  service_unavailable: [HFError, HFConditional | nil]
-  gateway_timeout: [HFError, HFConditional | nil]
-  http_version_not_supported: [HFError, HFConditional | nil]
-  insufficient_storage: [HFError, HFConditional | nil]
+  internal_server_error: [HFError, HFConditional, HFWithStages | nil]
+  not_implemented: [HFError, HFConditional, HFWithStages | nil]
+  bad_gateway: [HFError, HFConditional, HFWithStages | nil]
+  service_unavailable: [HFError, HFConditional, HFWithStages | nil]
+  gateway_timeout: [HFError, HFConditional, HFWithStages | nil]
+  http_version_not_supported: [HFError, HFConditional, HFWithStages | nil]
+  insufficient_storage: [HFError, HFConditional, HFWithStages | nil]
